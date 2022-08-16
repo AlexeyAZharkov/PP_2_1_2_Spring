@@ -3,10 +3,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class App {
     public static void main(String[] args) {
-        ApplicationContext applicationContext =
-                new AnnotationConfigApplicationContext(AppConfig.class);
-        HelloWorld bean =
-                (HelloWorld) applicationContext.getBean("helloworld");
-        System.out.println(bean.getMessage());
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        HelloWorld bean = (HelloWorld) applicationContext.getBean("helloworld");
+        HelloWorld beanH2 = (HelloWorld) applicationContext.getBean("helloworld");
+
+        System.out.println(bean == beanH2);
+
+        Cat beanCat1 = (Cat) applicationContext.getBean("cat");
+        Cat beanCat2 = (Cat) applicationContext.getBean("cat");
+
+        System.out.println(beanCat1 == beanCat2);
     }
 }
